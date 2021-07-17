@@ -10,7 +10,17 @@ jobs:
     # Be sure to update the Docker image tag below to openjdk version of your application.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
-      - image: demo
+      - image: circleci/openjdk:8u171-jdk
+        environment:
+          JDBC_DATABASE_URL: mysql://database:3306/db
+          JDBC_DATABASE_USERNAME: user
+          JDBC_DATABASE_PASSWORD: password
+      
+      - image: circleci/mysql
+        environment: 
+          MYSQL_DB: db
+
+
     steps:
       # Checkout the code as the first step.
       - checkout
